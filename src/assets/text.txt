@@ -1,0 +1,11 @@
+Almost all Angular applications need to make HTTP requests
+ to a back-end web API to retrieve, save, update, and
+  delete data (CRUD Operations).
+
+POST − Create
+GET − Read
+PUT − Update
+DELETE − Delete
+
+The Angular HTTP course teaches basic, as well as
+advanced features of Angular HTTP Communication.
