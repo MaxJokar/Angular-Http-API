@@ -9,25 +9,25 @@ import { UserService } from './service/user.service';
 })
 
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   // private user:User = {
     private user:any = {
-    // 'id':2, // for update we need to use  id  add it here
-    // 'name': 'Max Jokar',
-    // 'username': 'Maxim',
-    // 'email': 'maksimSSSjokar@gamil.biz',
-    // 'address': {
-    //   'street': 'Kulas Light',
-    //   'suite': 'Apt. 778787877777',
-    //   'city': 'Gwenborough',
-    //   'zipcode': '92998-3874',
-    //   'geo': {
-    //     'lat': '-37.3159',
-    //     'lng': '81.1496'
-    //   }
-    // },
-    // 'phone': '1-770-736-8031 x56442',
-    // 'website': 'hildegard.org',
+    'id':2, // for update?/create/patch we need to use  id or following  add it here
+    'name': 'Max Jokar Updated',
+    'username': 'Maxim',
+    'email': 'maksimSSSjokar@gamil.biz',
+    'address': {
+      'street': 'Kulas Light',
+      'suite': 'Apt. 778787877777',
+      'city': 'Gwenborough',
+      'zipcode': '92998-3874',
+      'geo': {
+        'lat': '-37.3159',
+        'lng': '81.1496'
+      }
+    },
+    'phone': '1-770-736-8031 x56442',
+    'website': 'Maxik.org',
     // 'company': {
     //   'name': 'Angular ',
     //   'catchPhrase': 'Multi-layered client-server neural-net',
@@ -39,19 +39,21 @@ export class AppComponent implements OnInit{
 
   constructor(private userService: UserService) {}
 
-
+  //7 You can Test each of them but NOT together!
   ngOnInit(): void{
-    //this.onUpdateUser();
-    //this.onPatchUser();
-    // this.onDeleteUser();
-    //this.onGetUsers();
-    //  this.onGetUser();
-    //this.onCreateUser();
-    // this.onTextFile();  we can see the content of our text.txt from assets in Browser
+    this.onGetUsers();
+    this.OngetUsersPipeMapUpperCase(); // Uppser name in List
+    this.onGetUser();
+    this.onCreateUser();
+    this.onUpdateUser();
+    this.onPatchUser();
+    this.onDeleteUser();
+    this.onTextFile();      // we can see the content of our text.txt from assets in Browser
+    //this.onGetUserParams()
 
   }
 
-  // to call the service and subscribe to the function
+  //1. to call the service and subscribe to the function
   onGetUsers(): void {
     this.userService.getUsers().subscribe(
       (response) => console.table(response),
@@ -62,6 +64,20 @@ export class AppComponent implements OnInit{
 
   }
 
+  //2.
+  OngetUsersPipeMapUpperCase(): void {
+    this.userService.getUsersPipeMapUpperCase().subscribe(
+      (response) => console.table(response),
+      //(error: any) => console.log(error),
+      // () =>console.log('Done getting users'),
+
+    );
+
+  }
+
+
+
+  //3
   onGetUser(): void {
     this.userService.getUser().subscribe(
       (response) => console.log(response),
@@ -71,16 +87,18 @@ export class AppComponent implements OnInit{
     }
 
 
+
+   //4
   onCreateUser(): void {
     this.userService.createUser(this.user).subscribe(
-      (response) => console.log(response),
+      (response) => console.table(response),
     //(error: any) => console.log(error),
     // () =>console.log('Done getting users'),
     );
 
   }
 
-  // we add id  to our pyload above
+  //5 we add id  to our pyload above
   // source will not be really updated on the server but it will be faked as if
   onUpdateUser(): void {
     this.userService.updateUser(this.user).subscribe(
@@ -88,26 +106,28 @@ export class AppComponent implements OnInit{
     //(error: any) => console.log(error),
     // () =>console.log('Done getting users'),
     );
-  }
+    }
 
+    //6
   onPatchUser(): void {
-    this.userService.patchUser(this.user).subscribe(
-      (response) => console.log(response),
+      this.userService.patchUser(this.user).subscribe(
+        (response) => console.table(response),
       //(error: any) => console.log(error),
       // () =>console.log('Done getting users'),
       );
-  }
+    }
 
+    //7
   onDeleteUser(): void {
-      this.userService.deleteUser(9).subscribe(
+      this.userService.deleteUser(2).subscribe(
         (response) => console.log('Response for Delete :',response),
         //(error: any) => console.log(error),
         // () =>console.log('Done getting users'),
       );
-  }
+    }
 
 
-
+  //8
   onTextFile(): void {
       this.userService.getTextFile().subscribe(
         (response) => console.log('Response:',response),
@@ -115,9 +135,17 @@ export class AppComponent implements OnInit{
         // () =>console.log('Done getting users'),
       );
 
-  }
+    }
 
 
+
+  // onGetUserParams(): void {
+  //   this.userService.getUserParams().subscribe(
+  //     (response) => console.log(response),
+  //     //(error: any) => console.log(error),
+  //     // () =>console.log('Done getting users'),
+  //   );
+  //   }
 
 
 
