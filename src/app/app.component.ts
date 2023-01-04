@@ -41,15 +41,16 @@ export class AppComponent implements OnInit {
 
   //7 You can Test each of them but NOT together!
   ngOnInit(): void{
-    this.onGetUsers();
-    this.OngetUsersPipeMapUpperCase(); // Uppser name in List
-    this.onGetUser();
-    this.onCreateUser();
-    this.onUpdateUser();
-    this.onPatchUser();
-    this.onDeleteUser();
-    this.onTextFile();      // we can see the content of our text.txt from assets in Browser
-    //this.onGetUserParams()
+    // this.onGetUsers();
+    // this.OngetUsersPipeMapUpperCase(); // Uppser name in List
+    // this.onGetUser();
+    // this.onCreateUser();
+    // this.onUpdateUser();
+    // this.onPatchUser();
+    // this.onDeleteUser();
+    // this.onTextFile();
+    //this.onGetHeader();    // we can see the content of our text.txt from assets in Browser
+    this.onGetUserParams()
 
   }
 
@@ -138,14 +139,31 @@ export class AppComponent implements OnInit {
     }
 
 
+  //9 Get Header , Change or Append to it
+  onGetHeader(): void {
+      this.userService.changeUserHeaders().subscribe(
+        (response) => console.table(response),
+        //(error: any) => console.log(error),
+        // () =>console.log('Done getting users'),
 
-  // onGetUserParams(): void {
-  //   this.userService.getUserParams().subscribe(
-  //     (response) => console.log(response),
-  //     //(error: any) => console.log(error),
-  //     // () =>console.log('Done getting users'),
-  //   );
-  //   }
+      );
+
+  }
+
+
+
+
+
+
+  //10 To pass additional information in URL  , good for filtering famous as  "query param"
+  //https://jsonplaceholder.typicode.com/users?page=5&sort=true
+  onGetUserParams(): void {
+    this.userService.getUserParams().subscribe(
+      (response) => console.log(response),
+      //(error: any) => console.log(error),
+      // () =>console.log('Done getting users'),
+    );
+    }
 
 
 

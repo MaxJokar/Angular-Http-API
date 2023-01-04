@@ -99,44 +99,25 @@ export class UserService {
 
 
 
+  // 9 Change the Header
+  changeUserHeaders(): Observable<User[]> {
+    let myHeaders = new HttpHeaders({ 'myheader' : 'headervalue'})
+    myHeaders  = myHeaders.set('id','01.01.2023'); // needs key id to override
+    myHeaders  = myHeaders.append('id','777777777'); //just adds
+    myHeaders  = myHeaders.set('id','00000'); // To check if it overwrites or NOT
 
-
-
-
-
-
-
-
-    //  returns a  http event &its gonna have an array of users inside
-  getUsersHttpEvent(): Observable <HttpEvent<User[]>> {
-    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users',
-    //   //reportProgress :when we upload/download very large amount of data:console type 2
-    {observe: 'events',reportProgress:true});
+    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users',{headers:myHeaders}); //check for environemt apiurl doesnt navigate
   }
 
 
+  //10 https://jsonplaceholder.typicode.com/users?page=5&sort=true
+  getUserParams(): Observable <User[]> {
+    let myParams = new HttpParams().set('page','5').set('sort','true')
+    myParams = myParams.append('name','Maxim'); //we add it to our Params:users?page=5&sort=true&name=Maxim
+    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users',{ params:myParams});
 
 
-   // observable is not gonna do anything - just rethrow error
-  // private handleError(error: HttpResponse): Observable<never> {
-  //   if(error.status === 404) return throwError({code: 404
-  //     , message : 'Page Not Found'})
-  // }
-
-    // responseType is text so we must use string for observable
-
-
-
-
-
-  // getUserParams(): Observable <User[]> {
-  //   return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
-  //   .pipe(
-  //     //catchError(this.handleError) // this function gonna take Errors
-
-  //   );
-
-  // }
+  }
 
 
 
@@ -154,21 +135,16 @@ export class UserService {
 
 
 
-//   //     let myHeaders = new HttpHeaders({ 'myheader' : 'headervalue'})
-//   //     myHeaders = myHeaders.set('id', '1234'); // to make it immutable
-//   //     myHeaders = myHeaders.append('id', '0000');  //just appends to 1234 0000
-
-
-//     //instance of myHeaders is immutable
-//     const myHeaders = new HttpHeaders({ 'myheader' : 'headervalue'});
-//    // after adding option headers check Network to if its there or not
-//     return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users',{headers:myHeaders}); //check for environemt apiurl doesnt navigate
-//   }
 
 
 
+   // observable is not gonna do anything - just rethrow error
+  // private handleError(error: HttpResponse): Observable<never> {
+  //   if(error.status === 404) return throwError({code: 404
+  //     , message : 'Page Not Found'})
+  // }
 
-
+    // responseType is text so we must use string for observable
 
 
 
