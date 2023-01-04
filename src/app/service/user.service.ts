@@ -124,14 +124,19 @@ export class UserService {
 
 
 
-// //3
-// getUserParams(): Observable<HttpEvent><User[]>> {
-//   //   let myParams = new HttpParams().set('page' ,'5').set('sort','true');
-//   //   myParams = myParams.append('name','Max');
-//   //   // myParams = myParams.append('name','Philip'),
 
-//   //   return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users',{params:myParams});
-//   // }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
