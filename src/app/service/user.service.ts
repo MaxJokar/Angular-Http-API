@@ -30,10 +30,9 @@ export class UserService {
     //2.
     getUsersPipeMapUpperCase(): Observable <User[]> {
     //pipe. put all operatrs together
-    // tap: to take a look at our data
     return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
-    .pipe(
-       tap(users => console.log(users)),//take the incoming Observable/source observable
+    .pipe( //Observable instance Piped into Operator
+       tap(users => console.table(users)),//tap : take last
 
 
 
@@ -61,7 +60,7 @@ export class UserService {
   }
 
 
-    //4
+  //4
   createUser(user:User): Observable <User> {
     return this.http.post<User>('https://jsonplaceholder.typicode.com/users',user);
   }
@@ -70,7 +69,7 @@ export class UserService {
   updateUser(user:User): Observable <User> {
     return this.http.put<User>('https://jsonplaceholder.typicode.com/users/${user.id}',user); // check has error
   }
-    //6
+  //6
   patchUser(user:User): Observable <User> {
     return this.http.patch<User>('https://jsonplaceholder.typicode.com/users/${user.id}',user);
   }
@@ -88,24 +87,22 @@ export class UserService {
     // getTextFile() {
     return this.http.get('assets/text.txt' , {responseType: 'text'});
 
-    // Different responseType here :body of httpsResponse will be blob info/binary data
-  //   getTextFile(): Observable<HttpResponse<Blob>> {
-  //     // get = we make a call then we set the responseType
-  //   return this.http.get('assets/text.txt' , {responseType: 'blob' ,
-  //    observe:'response'});
+    // httpsResponse also can  be : blob info/binary data
+    //   getTextFile(): Observable<HttpResponse<Blob>> {
+    //     // get = we make a call then we set the responseType
+    //   return this.http.get('assets/text.txt' , {responseType: 'blob' ,
+    //    observe:'response'});
   }
 
 
 
-
-  // 9 Change the Header
+  //9 Change the Header
   changeUserHeaders(): Observable<User[]> {
     let myHeaders = new HttpHeaders({ 'myheader' : 'headervalue'})
     myHeaders  = myHeaders.set('id','01.01.2023'); // needs key id to override
     myHeaders  = myHeaders.append('id','777777777'); //just adds
-    myHeaders  = myHeaders.set('id','00000'); // To check if it overwrites or NOT
-
-    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users',{headers:myHeaders}); //check for environemt apiurl doesnt navigate
+    //myHeaders  = myHeaders.set('id','00000'); To check if it overwrites or NOT
+    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users',{headers:myHeaders});
   }
 
 
@@ -120,41 +117,12 @@ export class UserService {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    // observable is not gonna do anything - just rethrow error
   // private handleError(error: HttpResponse): Observable<never> {
   //   if(error.status === 404) return throwError({code: 404
   //     , message : 'Page Not Found'})
   // }
-
     // responseType is text so we must use string for observable
-
-
-
-
-
-
 
 
 

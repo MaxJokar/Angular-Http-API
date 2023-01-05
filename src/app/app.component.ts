@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   // private user:User = {
     private user:any = {
     'id':2, // for update?/create/patch we need to use  id or following  add it here
-    'name': 'Max Jokar Updated',
+    'name': 'Max Jokar Updated/created/patched',
     'username': 'Maxim',
     'email': 'maksimSSSjokar@gamil.biz',
     'address': {
@@ -39,15 +39,15 @@ export class AppComponent implements OnInit {
 
   constructor(private userService: UserService) {}
 
-  //7 You can Test each of them but NOT together!
+  // You can Test each of them but NOT together!
   ngOnInit(): void{
     //this.onGetUsers();
-    this.OngetUsersPipeMapUpperCase(); // Uppser name in List
+    //this.OngetUsersPipeMapUpperCase(); // Uppser name in List
     // this.onGetUser();
     // this.onCreateUser();
     // this.onUpdateUser();
     // this.onPatchUser();
-    // this.onDeleteUser();
+     this.onDeleteUser();
     // this.onTextFile();
     //this.onGetHeader();    // we can see the content of our text.txt from assets in Browser
     //this.onGetUserParams()
@@ -67,18 +67,18 @@ export class AppComponent implements OnInit {
 
   //2.
   OngetUsersPipeMapUpperCase(): void {
-    this.userService.getUsersPipeMapUpperCase().subscribe(
-      (response) => console.table(response),
+    this.userService.getUsersPipeMapUpperCase().subscribe()
+      // (response) => console.table(response),
       //(error: any) => console.log(error),
       // () =>console.log('Done getting users'),
 
-    );
+    // );
 
   }
 
 
 
-  //3
+  //3 Get only One User (Hard-code)
   onGetUser(): void {
     this.userService.getUser().subscribe(
       (response) => console.log(response),
@@ -99,8 +99,8 @@ export class AppComponent implements OnInit {
 
   }
 
-  //5 we add id  to our pyload above
-  // source will not be really updated on the server but it will be faked as if
+  //5 Update requires all User's field ,otherwise null in DB
+  //Document : source will not be really updated on the server but it will be faked as if
   onUpdateUser(): void {
     this.userService.updateUser(this.user).subscribe(
       (response) => console.log(response),
@@ -109,7 +109,7 @@ export class AppComponent implements OnInit {
     );
     }
 
-    //6
+  //6 Not necessary all User's field
   onPatchUser(): void {
       this.userService.patchUser(this.user).subscribe(
         (response) => console.table(response),
@@ -118,7 +118,7 @@ export class AppComponent implements OnInit {
       );
     }
 
-    //7
+  //7
   onDeleteUser(): void {
       this.userService.deleteUser(2).subscribe(
         (response) => console.log('Response for Delete :',response),
@@ -153,8 +153,6 @@ export class AppComponent implements OnInit {
 
 
 
-
-
   //10 To pass additional information in URL  , good for filtering famous as  "query param"
   //https://jsonplaceholder.typicode.com/users?page=5&sort=true
   onGetUserParams(): void {
@@ -164,24 +162,6 @@ export class AppComponent implements OnInit {
       // () =>console.log('Done getting users'),
     );
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
