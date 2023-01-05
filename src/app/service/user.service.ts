@@ -22,9 +22,8 @@ export class UserService {
 
  //1. Displays the last id
   getUsers(): Observable <User[]> {
-    //pipe. put all operatrs together
-    // tap: to take a look at our data
-    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
+    //return this.http.get<User[]>('${this.apiUrl}/users');
+    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users');
 
   }
 
@@ -38,15 +37,15 @@ export class UserService {
 
 
 
-      // map all users and change the info we want to take
+      // we can't change data come from Backend but front :map all users and change(UpperCase,etc)
       map(users =>users.map(user => ({
-        ...user,//give me everything on that user(copy every attribute-spread operator)
+        ...user,//COPY  everything on that user[] into another one
            name:user.name.toUpperCase() // names become uppercase in our list
-  //       // we also can filter important/necessary datas from our users & not all datas
-        // email:user.email
-        // name:user.name.toUpperCase(),
-        // phone:user.phone,
-        // image: '${this.defaultImage}/${user.username.toLowerCase()}'
+      // we also can filter important/necessary datas from our users & not all datas
+      // email:user.email
+      // name:user.name.toUpperCase(),
+      // phone:user.phone,
+      // image: '${this.defaultImage}/${user.username.toLowerCase()}'
 
        })) )
       );

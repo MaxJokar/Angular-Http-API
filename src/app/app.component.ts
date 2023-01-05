@@ -41,8 +41,8 @@ export class AppComponent implements OnInit {
 
   //7 You can Test each of them but NOT together!
   ngOnInit(): void{
-    // this.onGetUsers();
-    // this.OngetUsersPipeMapUpperCase(); // Uppser name in List
+    //this.onGetUsers();
+    this.OngetUsersPipeMapUpperCase(); // Uppser name in List
     // this.onGetUser();
     // this.onCreateUser();
     // this.onUpdateUser();
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
     // this.onDeleteUser();
     // this.onTextFile();
     //this.onGetHeader();    // we can see the content of our text.txt from assets in Browser
-    this.onGetUserParams()
+    //this.onGetUserParams()
 
   }
 
